@@ -1,0 +1,4 @@
+nado-protocol
+python-dotenv
+pandas
+numpy
