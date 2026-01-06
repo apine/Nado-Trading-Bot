@@ -35,6 +35,7 @@ The bot is structured into several key modules, each with a distinct responsibil
 *   **`src/trade_execution.py`**: Provides functions for executing trades (market orders) and managing risk (stop-loss, take-profit orders) on the Nado exchange.
 *   **`src/backtester.py`**: A framework for simulating the trading strategy against historical data to evaluate its performance.
 *   **`src/logger.py`**: Sets up a comprehensive logging system for recording bot activities, errors, and performance metrics.
+*   **`src/main_bot.py`**: Starting point of the trading bot
 
 ## Trading Strategy
 
