@@ -1,0 +1,9 @@
+services:
+  nado-bot:
+    build: .
+    container_name: nado_trading_bot
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    restart: unless-stopped

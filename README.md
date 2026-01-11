@@ -76,6 +76,41 @@ The current default trading strategy implemented is a **Moving Average Crossover
     ```
     **WARNING**: Never commit your `.env` file or private key to version control. Keep it secure.
 
+## Running with Docker
+
+This project is configured to run easily using Docker and Docker Compose. This ensures a consistent environment and dependencies.
+
+1.  **Prerequisites:**
+    *   [Docker](https://docs.docker.com/get-docker/) installed on your machine.
+    *   [Docker Compose](https://docs.docker.com/compose/install/) (usually included with Docker Desktop).
+
+2.  **Setup:**
+    Ensure you have created your `.env` file as described in the [Configuration](#configuration) section.
+
+3.  **Run the Bot:**
+    To build the image and start the bot:
+    ```bash
+    docker compose up --build
+    ```
+    This will start the `src/main_bot.py` entry point.
+
+4.  **Run in Background:**
+    To run the bot in detached mode (background):
+    ```bash
+    docker compose up -d
+    ```
+
+5.  **View Logs:**
+    If running in background, you can tail the logs with:
+    ```bash
+    docker compose logs -f
+    ```
+
+6.  **Stop the Bot:**
+    ```bash
+    docker compose down
+    ```
+
 ## Usage
 
 You can run individual components of the bot for testing and development.
@@ -150,14 +185,16 @@ nado_client = get_nado_client(mode=NadoClientMode.TESTNET)
 
 ## Deployment Strategy
 
-A recommended deployment approach is using **Docker** for portability, isolation, and ease of management.
+The project is fully prepared for deployment using **Docker**:
 
-1.  **Containerization**: Create a `Dockerfile` to package the bot and its dependencies.
-2.  **Environment Variables**: Inject sensitive credentials (like `NADO_PRIVATE_KEY`) as Docker secrets or environment variables at runtime.
-3.  **Orchestration**: Use Docker Compose for single-host deployments or Kubernetes for scalable, multi-host environments.
-4.  **Monitoring**: Integrate with Docker's logging mechanisms; consider external logging services.
-5.  **CI/CD**: Automate build, test, and deployment with CI/CD pipelines.
-6.  **Security**: Follow Docker best practices (e.g., non-root user, updated base images).
+*   **Dockerfile**: Uses `python:3.10-slim` for a lightweight and consistent runtime environment.
+*   **Docker Compose**: The `docker-compose.yml` file simplifies building and running the container, automatically loading your environment variables.
+
+For production deployment:
+1.  Clone the repository to your server (e.g., AWS EC2, DigitalOcean Droplet, or a Raspberry Pi).
+2.  Create your `.env` file with your production keys.
+3.  Run `docker compose up -d --build` to start the bot in the background.
+4.  Monitor logs via `docker compose logs -f`.
 
 ## License
 
